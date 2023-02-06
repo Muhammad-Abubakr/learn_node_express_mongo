@@ -5,6 +5,9 @@ const connectDB = require('./db/connect');
 // logger
 const morgan = require('morgan');
 
+// Requiring Routes
+const ProductsRouter = require('./routes/products');
+
 // loading dotenv enviornment variables 
 require('dotenv').config();
 
@@ -24,19 +27,19 @@ require('dotenv').config();
         // middlewares
         app.use(morgan('dev')); /* logger */
 
-
-        // routes
-
         /* Home Route */
         app.get('/', (req, res) => {
             res.status(200).send(`<h1>Store API</h1> <br> <a href='/api/v1/products'>products route</a>`)
         });
 
+        // routes
+        app.use('/api/v1/products', ProductsRouter); /* Products */
 
         /* 404 Pages */
         app.all('*', (req, res) => {
-            res.status(404).send(`<h1>404 - Not Found!</h1>`)
+            res.status(400).send(`<h1>400 - BAD REQUEST</h1>`)
         });
+
 
         // PORT configuration
         const port = process.env.PORT || 3000;
