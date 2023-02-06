@@ -1,0 +1,12 @@
+creating_servers/
+01-learn_node/
+02-learn_express/
+
+
+01-learn_node/node_modules/
+02-learn_express/node_modules/
+03-task-manager/node_modules/
+04-store-api/node_modules/
+
+03-task-manager/.env
+04-task-manager/.env
