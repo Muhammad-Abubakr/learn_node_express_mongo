@@ -16,8 +16,13 @@ const ProductSchema = new mongoose.Schema({
     },
     company: {
         type: String,
-        required: [ true, 'Must Provide a Company Name for the Product.' ],
-        trim: true
+        required: [ true, 'Must Provide a company name.' ],
+        trim: true,
+        enum: {
+            values: [ 'ikea', 'liddy', 'caressa', 'marcos' ],
+            message: '{VALUE} is not a valid value.'
+        }
+        // enum: [ 'ikea', 'liddy', 'caressa', 'marcos' ]
     },
     rating: {
         type: Number,

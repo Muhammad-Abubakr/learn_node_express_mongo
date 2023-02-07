@@ -9,6 +9,7 @@ const products = require('../controllers/products');
 
 // Setting up handlers
 router.route('/').get(products.getAllProducts);
+router.route('/:id').get(products.getProduct).delete(products.deleteProduct);
 router.route('/static').get(products.getAllProductsStatic);
 
 

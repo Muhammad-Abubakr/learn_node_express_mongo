@@ -23,6 +23,7 @@ require('dotenv').config();
         const products_json = await readFile('./products.json', 'utf-8');
         const products = JSON.parse(products_json);
 
+        Product.deleteMany(); // delete all documents in the model
         // Create a Document based on the schema design in the database 
         // the collection for the database will automatically be created
         // using the plural for the document name.
@@ -39,6 +40,8 @@ require('dotenv').config();
     }
     catch (err) {
         console.log(err);
+    } finally {
+        process.exit(0);
     }
 }
 )();
