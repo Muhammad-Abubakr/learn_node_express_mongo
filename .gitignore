@@ -9,6 +9,8 @@ node-express-course/
 02-learn_express/node_modules/
 03-task-manager/node_modules/
 04-store-api/node_modules/
+05-JWT-Basics/node_modules/
 
 03-task-manager/.env
-04-task-manager/.env
+04-store-api/.env
+05-JWT-Basics/.env
