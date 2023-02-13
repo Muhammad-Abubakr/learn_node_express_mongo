@@ -23,25 +23,38 @@ require('dotenv').config();
         const products_json = await readFile('./products.json', 'utf-8');
         const products = JSON.parse(products_json);
 
-        Product.deleteMany(); // delete all documents in the model
-        // Create a Document based on the schema design in the database 
+        const result = await Product.deleteMany(); // delete all documents in the model
+        console.log(`Deleted: ${result.deletedCount}`);
+        // Create a Document based on the schema design in the database
         // the collection for the database will automatically be created
         // using the plural for the document name.
-        console.log(products.length);
-        // products.forEach(async (product) => {
-        //     await Product.create(product, (err, created_product) => {
-        //         if (err) {
-        //             console.log(err);
-        //         } else {
-        //             console.log(created_product);
-        //         }
-        //     })
+
+
+        // Following code is a bit confusing, let's do it in a different manner
+        // await products.forEach(async (product) => {
+
+        //     if (!product.featured) {
+        //         product.featured = false;
+        //     }
+
+        //     await Product.create(product);
         // });
+
+        products.forEach(product => {
+
+            if (!product.featured) {
+                product.featured = false;
+            }
+
+            product = new Product(product);
+            product.save().then((result) => {
+                console.log(result);
+            }).catch((err) => {
+                console.log(err);
+            })
+        });
     }
     catch (err) {
         console.log(err);
-    } finally {
-        process.exit(0);
     }
-}
-)();
+})();
