@@ -27,7 +27,6 @@ const authentication = async (req, res, next) => {
             id: decoded_data.payload.user_id,
             name: decoded_data.payload.username
         }
-
     } catch (error) {
         throw new CustomError(`Not authorized to access this route`, 401);
     }
