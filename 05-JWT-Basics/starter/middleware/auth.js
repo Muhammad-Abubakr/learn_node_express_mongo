@@ -1,4 +1,4 @@
-const CustomError = require('../error/custom-error');
+const { Unauthorized, BadRequest } = require('../error');
 const jwt = require('jsonwebtoken');
 
 /* AUTH middleware
@@ -13,7 +13,7 @@ const authentication = async (req, res, next) => {
 
     // Checking the presence of the token and verifying its format
     if (!auth_header || !auth_header.startsWith('Bearer ')) {
-        throw new CustomError(`Invalid Token`, 401);
+        throw new BadRequest(`No Token present or Invalid`);
     }
 
     const auth_token = auth_header.split(' ')[ 1 ];
@@ -28,7 +28,7 @@ const authentication = async (req, res, next) => {
             name: decoded_data.payload.username
         }
     } catch (error) {
-        throw new CustomError(`Not authorized to access this route`, 401);
+        throw new Unauthorized(`Not authorized to access this route`);
     }
 
     next();

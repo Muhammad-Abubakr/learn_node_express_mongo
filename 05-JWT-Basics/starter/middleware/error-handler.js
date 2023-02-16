@@ -1,5 +1,5 @@
-const CustomError = require('../error/custom-error');
 const { StatusCodes } = require('http-status-codes');
+const { CustomError } = require('../error');
 
 const customErrorHandler = (err, req, res, next) => {
 
