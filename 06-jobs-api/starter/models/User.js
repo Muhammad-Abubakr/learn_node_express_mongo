@@ -9,7 +9,7 @@ const User = mongoose.Schema({
         trim: true
     },
     password: {
-        type: Number,
+        type: String,
         required: [ true, 'Please provide a password (a combination of letters and digits)' ],
         trim: true
     },
