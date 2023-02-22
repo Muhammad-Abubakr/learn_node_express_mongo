@@ -12,6 +12,10 @@ const ConnectDB = require('./db/connect');
 // Routes
 const authentication = require('./routes/auth');
 
+/* Middlewares */
+// Auth
+const auth = require('./middleware/authentication');
+
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
@@ -29,6 +33,9 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
       /* Middlewares */
       // Parsing JSON data sent from the front-end client
       app.use(express.json());
+
+      /* auth */
+      app.use(auth);
 
       // routes
       app.get('/', (req, res) => {

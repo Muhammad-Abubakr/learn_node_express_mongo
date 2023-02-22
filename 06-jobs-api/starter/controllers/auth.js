@@ -50,6 +50,7 @@ const register = async (req, res) => {
     throw new ResourceExists(`The resource with the name ${username} already exists.`);
 }
 
+/* Login */
 const login = (req, res) => {
     res.status(StatusCodes.OK).send('Login User');
 }
