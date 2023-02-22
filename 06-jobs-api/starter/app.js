@@ -34,15 +34,12 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
       // Parsing JSON data sent from the front-end client
       app.use(express.json());
 
-      /* auth */
-      app.use(auth);
-
       // routes
       app.get('/', (req, res) => {
         res.status(200).send('<h1>JOBS API</h1>');
       })
 
-      app.use('/api/v1', authentication);
+      app.use('/api/v1/auth', authentication);
 
       app.use(notFoundMiddleware); /* Handling 404 Pages */
       app.use(errorHandlerMiddleware); /* Custom Error Handling */
